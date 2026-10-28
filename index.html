@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Create a QR code for any website in seconds. Scan it to open the link on your phone."
+    />
+    <meta name="theme-color" content="#f6f7f2" />
+    <title>Link to QR — Make a website QR code</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      defer
+    ></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Link to QR home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M4 4h10v10H4zM7 7v4h4V7zM18 4h10v10H18zM21 7v4h4V7zM4 18h10v10H4zM7 21v4h4v-4z" fill="currentColor" />
+            <path d="M18 18h4v4h-4zM24 18h4v7h-4zM18 24h4v4h-4zM24 28h4v-2h-4z" fill="currentColor" />
+          </svg>
+        </span>
+        <span>link<span class="brand-light">to</span>qr</span>
+      </a>
+      <a class="topbar-note" href="#how-it-works">A little link magic <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR LINK, IN A SNAP</div>
+          <h1 id="page-title">From link<br />to <span>scan.</span></h1>
+          <p class="intro">
+            Turn any website into a QR code. Share it anywhere and let people
+            land right where you want them.
+          </p>
+
+          <form id="qr-form" class="link-form" novalidate>
+            <label for="website-url">Your website link</label>
+            <div class="input-wrap" id="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M10 13.5a4.5 4.5 0 0 0 6.36 0l3-3A4.5 4.5 0 0 0 13 4.14l-1.72 1.72M14 10.5a4.5 4.5 0 0 0-6.36 0l-3 3A4.5 4.5 0 0 0 11 19.86l1.72-1.72" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </span>
+              <input
+                id="website-url"
+                name="website-url"
+                type="text"
+                inputmode="url"
+                autocomplete="url"
+                placeholder="https://yourwebsite.com"
+                aria-describedby="url-hint url-error"
+                required
+              />
+              <button class="generate-button" type="submit">
+                Make my QR <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+            <p class="input-hint" id="url-hint">No https? No worries, we’ll add it for you.</p>
+            <p class="error-message" id="url-error" role="alert"></p>
+          </form>
+
+          <div class="trust-note">
+            <span class="check-icon" aria-hidden="true">✓</span>
+            Free, instant, and made right in your browser.
+          </div>
+        </div>
+
+        <div class="result-card" aria-label="QR code preview">
+          <div class="card-topline">
+            <span class="card-label"><span class="live-dot"></span> YOUR QR CODE</span>
+            <span class="card-tag">READY TO SCAN</span>
+          </div>
+          <div class="qr-stage" id="qr-stage" aria-live="polite">
+            <div class="empty-state" id="empty-state">
+              <div class="qr-placeholder" aria-hidden="true">
+                <span class="corner corner-tl"></span>
+                <span class="corner corner-tr"></span>
+                <span class="corner corner-bl"></span>
+                <svg viewBox="0 0 72 72" fill="none">
+                  <path d="M8 8h20v20H8zM14 14v8h8v-8zM44 8h20v20H44zM50 14v8h8v-8zM8 44h20v20H8zM14 50v8h8v-8z" fill="currentColor" />
+                  <path d="M44 44h8v8h-8zM56 44h8v14h-8zM44 56h8v8h-8z" fill="currentColor" />
+                </svg>
+                <span class="placeholder-sparkle sparkle-one">✳</span>
+                <span class="placeholder-sparkle sparkle-two">✳</span>
+              </div>
+              <p>Your QR code will<br />show up right here</p>
+              <span class="empty-caption">Waiting on a link...</span>
+            </div>
+            <div id="qrcode" class="qr-output" aria-label="Generated QR code"></div>
+          </div>
+          <div class="result-footer">
+            <p id="result-caption">Paste a link to get started</p>
+            <div class="result-actions" id="result-actions" hidden>
+              <button class="action-button" id="copy-button" type="button">
+                <span aria-hidden="true">⧉</span> Copy link
+              </button>
+              <button class="action-button action-primary" id="download-button" type="button">
+                <span aria-hidden="true">↓</span> Download
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="steps" id="how-it-works" aria-label="How it works">
+        <div class="step">
+          <span class="step-number">01</span>
+          <div><h2>Drop your link</h2><p>Paste any website address above.</p></div>
+        </div>
+        <span class="step-connector" aria-hidden="true"></span>
+        <div class="step">
+          <span class="step-number">02</span>
+          <div><h2>Make it a QR</h2><p>Your code appears in a flash.</p></div>
+        </div>
+        <span class="step-connector" aria-hidden="true"></span>
+        <div class="step">
+          <span class="step-number">03</span>
+          <div><h2>Share it anywhere</h2><p>Download, print, or send it along.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span class="footer-brand">link<span>to</span>qr</span>
+      <p>One scan away from somewhere great.</p>
+      <span class="footer-mark" aria-hidden="true">✳</span>
+    </footer>
+  </body>
+</html>
